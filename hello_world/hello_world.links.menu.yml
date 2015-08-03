@@ -1,0 +1,6 @@
+hello.admin:
+  title: 'Hello module admin settings'
+  description: 'example of how to make admin settings page links'
+  parent: system.admin_config_development
+  route_name: hello.admin_settings
+  weight: 100

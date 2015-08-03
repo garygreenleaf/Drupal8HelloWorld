@@ -1,0 +1,16 @@
+hello.content:
+  path: '/hello'
+  defaults:
+    _controller: '\Drupal\hello_world\Controller\HelloController::content'
+    _title: 'Hello World Example'
+  requirements:
+    _permission: 'access content'
+
+
+hello.admin_settings:
+  path: '/admin/hello'
+  defaults:
+    _form: '\Drupal\hello_world\Form\HelloworldSettingsForm'
+    _title: 'Hello World Admin'
+  requirements:
+    _permission: 'administer content'

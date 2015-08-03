@@ -1,0 +1,61 @@
+<?php
+/**
+ * @file
+ * Hello World module file.
+ */
+
+/**
+ * Implements hook_page_top().
+ */
+function hello_world_page_top(array &$page_top) {
+
+  if (!_hello_world_is_active()) {
+    return;
+  }
+
+  $config = \Drupal::config('hello_world.settings');
+
+  if($config->get('show_message')){
+    $markup  = '<div id="helloWorld">' . $config->get('message') . ' <a href="/hello" title=" ' .t('More Information') . ' ">' . t('More Information'). '</a></div>';
+
+    $page_top ['hello_world'] = array(
+      '#markup' => $markup,
+    );
+
+  }
+
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function hello_world_page_attachments_alter(array &$page) {
+
+  if (!_hello_world_is_active()) {
+    return;
+  }
+
+  $page['#attached']['library'][] = 'hello_world/message';
+
+}
+
+
+/**
+ * Checks
+ * @return boolean TRUE, if library should be included in current page request,
+ *         FALSE otherwise.
+ */
+function _hello_world_is_active() {
+
+  $show = TRUE;
+
+  if (drupal_installation_attempted()) {
+    $show = FALSE;
+  } elseif(\Drupal::service('router.admin_context')->isAdminRoute(\Drupal::routeMatch()->getRouteObject())) {
+    // Hide on admin pages.
+    $show = FALSE;
+  }
+
+  return $show;
+
+}

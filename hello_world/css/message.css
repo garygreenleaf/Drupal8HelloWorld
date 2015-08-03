@@ -1,0 +1,13 @@
+#helloWorld {
+  background-color:red;
+  width:100%;
+  color:white;
+  font-size: 16px;
+  font-weight:bold;
+  text-align: center;
+  padding:10px;
+}
+
+#helloWorld a {
+  color:white;
+}
